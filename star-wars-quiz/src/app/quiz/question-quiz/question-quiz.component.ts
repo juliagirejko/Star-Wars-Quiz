@@ -11,7 +11,6 @@ export class StartPageComponent {
 
   question: Quiz | undefined;
   selectedAnswerIndex: number | undefined
-  answerFeedback: string = ''
 
   constructor(private readonly StarWarsService: StarWarsService){}
 
@@ -20,14 +19,9 @@ export class StartPageComponent {
   }
 
   submitAnswer() {
-    console.log(this.selectedAnswerIndex  + "clicked")
-    if (this.question && this.selectedAnswerIndex !== undefined) {
-      if (this.selectedAnswerIndex === this.question.correctAnswerIndex) {
-        this.answerFeedback = 'Correct!';
-      } else {
-        this.answerFeedback = 'Incorrect. The correct answer is: ' +
-          this.question.answerOptions[this.question.correctAnswerIndex];
-      }
+    console.log(this.selectedAnswerIndex  + " clicked")
+    if(this.question && this.selectedAnswerIndex !== undefined){
+      this.StarWarsService.checkAnswer(this.question, this.selectedAnswerIndex)
     }
   }
 
