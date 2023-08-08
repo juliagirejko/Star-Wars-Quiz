@@ -17,6 +17,7 @@ export class QuestionQuizComponent implements OnInit{
   questionsTable: string[] = []
   questionsTableLength: number = this.questionsTable.length
   isQuizFinished: boolean = false
+  isLoading: boolean = true
   private totalSubscription: Subscription | undefined;
 
   constructor(
@@ -33,8 +34,10 @@ export class QuestionQuizComponent implements OnInit{
   }
 
   async loadQuestion() {
+    this.isLoading = true
     if(this.type)
       this.question = await this.StarWarsService.getAnswers(this.questionsTable[this.id], this.type);
+    this.isLoading = false
   }
 
   submitAnswer() {

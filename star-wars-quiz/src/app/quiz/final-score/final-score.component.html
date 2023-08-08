@@ -1,1 +1,7 @@
-<p>Your score: {{score}}</p>
+<p>Your score: {{score}} out of: {{id}}</p>
+<ng-container *ngIf="score && id">
+  <p *ngIf="(score/id) < 0.5">Time to rewatch some movies...</p>
+  <p *ngIf="(score/id) >= 0.5 && (score/id) <= 0.75">You are a real fan</p>
+  <p *ngIf="(score/id) > 0.75">May the force be with you</p>
+</ng-container>
+
