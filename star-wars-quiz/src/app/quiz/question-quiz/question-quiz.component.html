@@ -1,13 +1,16 @@
-<ng-container *ngIf="question">
+<ng-container *ngIf="question && !isQuizFinished">
   <h2>Random Question</h2>
   <p>{{ question.question }}</p>
   <span *ngFor="let a of question.answerOptions; let i = index">
     <button (click)="selectedAnswerIndex = i">{{ a }}</button>
   </span>
   <button (click)="submitAnswer()">Submit Answer</button>
+</ng-container>
+
+<ng-container *ngIf="isQuizFinished">
   <app-final-score></app-final-score>
 </ng-container>
 
 <ng-container *ngIf="!question">
-  <p>Loading next question...</p>
+  <p>Starting quiz...</p>
 </ng-container>
