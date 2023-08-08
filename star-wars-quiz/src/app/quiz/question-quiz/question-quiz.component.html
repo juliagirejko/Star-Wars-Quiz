@@ -1,0 +1,13 @@
+<ng-container *ngIf="question">
+  <h2>Random Question</h2>
+  <p>{{ question.question }}</p>
+  <span *ngFor="let a of question.answerOptions; let i = index">
+    <button (click)="selectedAnswerIndex = i">{{ a }}</button>
+  </span>
+  <button (click)="submitAnswer()">Submit Answer</button>
+  <p>{{ answerFeedback }}</p>
+</ng-container>
+
+<ng-container *ngIf="!question">
+  <p>Loading next question...</p>
+</ng-container>
