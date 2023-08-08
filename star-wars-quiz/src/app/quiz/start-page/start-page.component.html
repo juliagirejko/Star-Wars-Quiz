@@ -1,17 +1,22 @@
-<h1>Welcome jeddi</h1>
-<ng-container >
-  <span>set the question size:</span>
-  <br/>
-  <span *ngFor="let size of questionSize; let i = index">
-    <button (click)="selectedSize = i" (click)="setSize()">{{ size }}</button>
-  </span>
-  <br/>
-  <span>set the question type:</span>
-  <br/>
-  <span *ngFor="let size of questionType; let i = index">
-    <button (click)="selectedType = i">{{ size }}</button>
-  </span>
-  <br/>
-  <a *ngIf="selectedSize !== undefined" [routerLink]="['/question/', questionSize[selectedSize]]">Start quiz</a>
-</ng-container>
-
+  <div class="container">
+    <h1 class="title">Welcome Jedi</h1>
+    <ng-container>
+      <span class="text">Set the question size:</span>
+      <br/>
+      <span *ngFor="let size of questionSize; let i = index">
+        <button class="button" id="buttonSize" (click)="selectedSize = i" (click)="setQuestion()">{{ size }}</button>
+      </span>
+      <br/>
+      <span  *ngIf="selectedSize !== undefined">{{questionSize[selectedSize]}}</span>
+      <br/>
+      <span class="text">Set the question type:</span>
+      <br/>
+      <span *ngFor="let type of questionType; let i = index">
+        <button class="button" id="buttonType" (click)="selectedType = i" (click)="setQuestion()">{{ type }}</button>
+      </span>
+      <br/>
+      <span  *ngIf="selectedType !== undefined">{{questionType[selectedType]}}</span>
+      <br/>
+      <a *ngIf="selectedSize !== undefined && selectedType !== undefined" [routerLink]="['/question/', questionSize[selectedSize], questionType[selectedType]]" class="start-button">Start Quiz</a>
+    </ng-container>
+  </div>

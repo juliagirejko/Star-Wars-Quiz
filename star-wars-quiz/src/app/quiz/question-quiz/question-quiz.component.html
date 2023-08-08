@@ -1,17 +1,20 @@
-<ng-container *ngIf="question && !isQuizFinished">
-  <h2>Random Question</h2>
-  <p>{{ question.question }}</p>
-  <span *ngFor="let a of question.answerOptions; let i = index">
-    <button (click)="selectedAnswerIndex = i">{{ a }}</button>
-  </span>
-  <button (click)="submitAnswer()">Submit Answer</button>
-</ng-container>
+<div class="container">
+  <ng-container *ngIf="question && !isQuizFinished">
+    <p>{{ question.question }}</p>
+    <span *ngFor="let a of question.answerOptions; let i = index">
+      <button class="button" id="select-button" (click)="selectedAnswerIndex = i">{{ a }}</button>
+    </span>
+    <br/>
+    <button class="button" (click)="submitAnswer()" >Submit Answer</button>
+  </ng-container>
 
-<ng-container *ngIf="isQuizFinished">
-  <app-final-score></app-final-score>
-  <a routerLink="/home">Back to home page</a>
-</ng-container>
+  <ng-container *ngIf="isQuizFinished" class="back-home">
+    <app-final-score></app-final-score>
+    <a routerLink="/home">Back to home page</a>
+  </ng-container>
 
-<ng-container *ngIf="!question">
-  <p>Starting quiz...</p>
-</ng-container>
+  <ng-container *ngIf="!question">
+    <p>Starting quiz...</p>
+  </ng-container>
+</div>
+

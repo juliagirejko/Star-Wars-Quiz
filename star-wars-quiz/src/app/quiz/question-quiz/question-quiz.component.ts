@@ -13,6 +13,7 @@ export class QuestionQuizComponent implements OnInit{
   question: Quiz | undefined;
   selectedAnswerIndex: number | undefined
   id: number = 0
+  type: string | null = String(this.route.snapshot.paramMap.get('type'));
   questionsTable: string[] = []
   questionsTableLength: number = this.questionsTable.length
   isQuizFinished: boolean = false
@@ -32,10 +33,11 @@ export class QuestionQuizComponent implements OnInit{
   }
 
   async loadQuestion() {
-    this.question = await this.StarWarsService.getAnswersCharacter(this.questionsTable[this.id]);
+    if(this.type)
+      this.question = await this.StarWarsService.getAnswers(this.questionsTable[this.id], this.type);
   }
 
-  async submitAnswer() {
+  submitAnswer() {
     if(this.question && this.selectedAnswerIndex !== undefined){
       this.StarWarsService.checkAnswer(this.question, this.selectedAnswerIndex)
     }

@@ -7,16 +7,18 @@ import { StarWarsService } from 'src/app/star-wars.service';
   styleUrls: ['./start-page.component.css']
 })
 export class StartPageComponent {
-  questionSize = [3, 10, 15]
-  questionType= ["character", "movie", "real fan"]
+  questionSize = [5, 10, 15]
+  questionType= ["character", "movie", "mix"]
   selectedSize: number | undefined
-  selectedType: number = this.questionType.indexOf('character')
+  selectedType: number | undefined
 
   constructor(private readonly StartWarsService: StarWarsService){
   }
 
-  setSize() {
-    if(this.selectedSize !== undefined)
-      this.StartWarsService.setQuestionsTable(this.questionSize[this.selectedSize])
+  setQuestion() {
+    if(this.selectedSize !== undefined && this.selectedType !== undefined)
+      this.StartWarsService.setQuestionsTable(
+          this.questionSize[this.selectedSize],
+          this.questionType[this.selectedType]);
   }
 }
