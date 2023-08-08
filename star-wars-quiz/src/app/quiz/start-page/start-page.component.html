@@ -12,6 +12,6 @@
     <button (click)="selectedType = i">{{ size }}</button>
   </span>
   <br/>
-  <a *ngIf="selectedSize !== undefined" routerLink="/question">Start quiz</a>
+  <a *ngIf="selectedSize !== undefined" [routerLink]="['/question/', questionSize[selectedSize]]">Start quiz</a>
 </ng-container>
 
