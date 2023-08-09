@@ -1,6 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,17 @@ export class AuthService {
 
   fakeUsername: string = "username";
   fakePassword: string = "password";
+  isGuest: boolean = false
+
+  private guest = new BehaviorSubject<boolean>(this.isGuest)
+  isGuest$ = this.guest.asObservable()
 
   constructor() { }
+
+  setAsGuest() {
+    this.isGuest = true
+    this.guest.next(this.isGuest)
+  }
 
   login(username: string, password: string): Observable<any> {
     if (username == this.fakeUsername && password == this.fakePassword) {

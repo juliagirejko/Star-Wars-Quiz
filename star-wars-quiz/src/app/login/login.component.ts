@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class LoginComponent {
 
+  isGuest: boolean = false
+
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(5)])
@@ -28,5 +30,10 @@ export class LoginComponent {
       console.log("username", username, "password", password)
       if(username && password)
         this.AuthService.login(username, password).subscribe(() => this.router.navigateByUrl("/"));
+  }
+
+  logAsGuest(): void {
+    this.AuthService.setAsGuest()
+    this.router.navigateByUrl("/home");
   }
 }

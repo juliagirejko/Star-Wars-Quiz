@@ -6,5 +6,6 @@
     <input type="password" placeholder="Password" [formControl]="loginForm.controls.password">
     <br>
     <button [disabled]="!loginForm.valid" type="submit" class="button">Log In</button>
+    <button class="button" (click)="logAsGuest()">Log as guest</button>
   </form>
 </div>

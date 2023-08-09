@@ -18,6 +18,8 @@
       <span  *ngIf="selectedType !== undefined">{{questionType[selectedType]}}</span>
       <br/>
       <a *ngIf="selectedSize !== undefined && selectedType !== undefined" [routerLink]="['/question/', questionSize[selectedSize], questionType[selectedType]]" class="start-button">Start Quiz</a>
-      <button class="button" (click)="logout()" >Log Out</button>
+      <button *ngIf="!isGuest" class="button" (click)="logout()" >Log Out</button>
+      <br/>
+      <button *ngIf="isGuest" class="button" (click)="logout()" >Back to log in page</button>
     </ng-container>
   </div>
