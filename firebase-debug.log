@@ -1,0 +1,25 @@
+[debug] [2023-08-09T09:39:08.431Z] ----------------------------------------------------------------------
+[debug] [2023-08-09T09:39:08.434Z] Command:       C:\Users\JuliaGirejko\.nvm\versions\node\v18.16.1\bin\node.exe C:\Users\JuliaGirejko\.nvm\versions\node\v18.16.1\bin\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-08-09T09:39:08.434Z] CLI Version:   12.4.7
+[debug] [2023-08-09T09:39:08.434Z] Platform:      win32
+[debug] [2023-08-09T09:39:08.434Z] Node Version:  v18.16.1
+[debug] [2023-08-09T09:39:08.436Z] Time:          Wed Aug 09 2023 11:39:08 GMT+0200 (Central European Summer Time)
+[debug] [2023-08-09T09:39:08.436Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-08-09T09:39:08.443Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-08-09T09:39:08.443Z] > authorizing via signed-in user (julciagir@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Repository\my_project\Star-Wars-Quiz
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
