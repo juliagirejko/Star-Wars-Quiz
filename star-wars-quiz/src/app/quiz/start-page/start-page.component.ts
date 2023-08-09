@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 import { StarWarsService } from 'src/app/star-wars.service';
 
 @Component({
@@ -12,7 +14,9 @@ export class StartPageComponent {
   selectedSize: number | undefined
   selectedType: number | undefined
 
-  constructor(private readonly StartWarsService: StarWarsService){
+  constructor(private readonly StartWarsService: StarWarsService,
+    private authService: AuthService,
+    private router: Router){
   }
 
   setQuestion() {
@@ -21,4 +25,10 @@ export class StartPageComponent {
           this.questionSize[this.selectedSize],
           this.questionType[this.selectedType]);
   }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigateByUrl("/login");
+  }
+
 }

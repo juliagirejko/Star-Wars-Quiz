@@ -1,7 +1,8 @@
 import { Subscription } from 'rxjs';
 import { Quiz, StarWarsService } from '../../star-wars.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 
 @Component({
   selector: 'app-question-quiz',
