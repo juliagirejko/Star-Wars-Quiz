@@ -19,6 +19,7 @@ export class StarWarsService {
   score: number = 0
   questionsTable: string[] = []
   questionList: { q: string; a: string; }[] = questionListChar
+  answerTable: {q: string, a: string}[] = []
 
   private totalScore = new BehaviorSubject<number>(this.score)
   score$ = this.totalScore.asObservable()
@@ -26,13 +27,15 @@ export class StarWarsService {
   private questionsForQuiz = new BehaviorSubject<string[]>(this.questionsTable)
   questionsTable$ = this.questionsForQuiz.asObservable()
 
+  private answersForQuiz = new BehaviorSubject<{q: string, a: string}[]>(this.answerTable)
+  answerTable$ = this.answersForQuiz.asObservable()
+
   get getQuestionsTable(){
     return this.questionsTable
   }
 
   async getAnswers(q: string, type: string): Promise<Quiz> {
     try {
-      console.log('Start getAnswers:', new Date().toISOString());
 
       const questionFromList = this.getQ(q); // get the question
 
@@ -45,31 +48,19 @@ export class StarWarsService {
 
       let randomOptions: string[] = [];
       if (type === 'character') {
-        console.log('Start getRandomCharacterOptions:', new Date().toISOString());
         randomOptions = await this.getRandomCharacterOptions(4, correctAnswer);
-        console.log('End getRandomCharacterOptions:', new Date().toISOString());
       } else if (type === 'movie') {
-        console.log('Start getRandomMovieOptions:', new Date().toISOString());
         randomOptions = await this.getRandomMovieOptions(4, correctAnswer);
-        console.log('End getRandomMovieOptions:', new Date().toISOString());
       } else if (type === 'mix') {
-        console.log('Start getRandomCharacterOptions:', new Date().toISOString());
         randomOptions = await this.getRandomCharacterOptions(2, correctAnswer);
-        console.log('End getRandomCharacterOptions:', new Date().toISOString());
 
-        console.log('Start getRandomMovieOptions:', new Date().toISOString());
         randomOptions.push(...(await this.getRandomMovieOptions(2, correctAnswer)));
-        console.log('End getRandomMovieOptions:', new Date().toISOString());
       }
 
-      console.log('Start sort answerOptions:', new Date().toISOString());
       answerOptions.push(...randomOptions);
       answerOptions.sort(() => Math.random() - 0.5);
-      console.log('End sort answerOptions:', new Date().toISOString());
 
       const correctAnswerIndex = answerOptions.indexOf(correctAnswer);
-
-      console.log('End getAnswers:', new Date().toISOString());
 
       return {
         question: questionFromList.q,
@@ -127,7 +118,6 @@ export class StarWarsService {
           randomOptions.push(randomTitle);
         }
       }
-
       return randomOptions;
     } catch (error) {
       throw new Error('An error occurred while fetching random movie options.');
@@ -158,14 +148,24 @@ export class StarWarsService {
   }
 
   checkAnswer(question: Quiz, selectedAnswerIndex: number) {
+      const answer = question.answerOptions[question.correctAnswerIndex]
       if (selectedAnswerIndex === question.correctAnswerIndex) {
         this.score += 1
         console.log('Correct !!!')
       } else {
-        console.log('Incorrect. The correct answer is: ' +
-          question.answerOptions[question.correctAnswerIndex])
+        console.log('Incorrect. The correct answer is: ' + answer)
+        this.answerTable.push({
+          q: question.question,
+          a: answer
+        })
       }
       this.totalScore.next(this.score)
+      this.answersForQuiz.next(this.answerTable)
+  }
+
+  setFinalScore(){
+    this.score = 0
+    this.totalScore.next(this.score)
   }
 
   setQuestionsTable(size: number, type: string): void{

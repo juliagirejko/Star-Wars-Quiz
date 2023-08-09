@@ -37,4 +37,10 @@ export class StartPageComponent {
     this.router.navigateByUrl("/login");
   }
 
+  ngOnDestroy(): void {
+    if(this.totalSubscription){
+      this.totalSubscription.unsubscribe();
+    }
+  }
+
 }

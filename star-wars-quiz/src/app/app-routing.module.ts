@@ -13,7 +13,7 @@ const routes: Routes = [
     component: StartPageComponent
   },
   { path: '',
-    redirectTo: '/home',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   { path: 'question/:index/:type',

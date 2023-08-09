@@ -29,7 +29,7 @@ export class LoginComponent {
       let password = this.loginForm.controls.password.value;
       console.log("username", username, "password", password)
       if(username && password)
-        this.AuthService.login(username, password).subscribe(() => this.router.navigateByUrl("/"));
+        this.AuthService.login(username, password).subscribe(() => this.router.navigateByUrl("/home"));
   }
 
   logAsGuest(): void {

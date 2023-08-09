@@ -1,7 +1,20 @@
-<p>Your score: {{score}} out of: {{id}}</p>
-<ng-container *ngIf="score && id">
-  <p *ngIf="(score/id) < 0.5">Time to rewatch some movies...</p>
-  <p *ngIf="(score/id) >= 0.5 && (score/id) <= 0.75">You are a real fan</p>
-  <p *ngIf="(score/id) > 0.75">May the force be with you</p>
-</ng-container>
+<div class="container">
+  <p>Your score: {{ score }} out of: {{ id }}</p>
 
+  <ng-container *ngIf="score !== undefined && id">
+    <p *ngIf="(score/id) < 0.5">Time to rewatch some movies...</p>
+    <p *ngIf="(score/id) >= 0.5 && (score/id) <= 0.75">You are a real fan</p>
+    <p *ngIf="(score/id) > 0.75">May the force be with you</p>
+    <button *ngIf="(score/id) < 1 && !isGuest" class="button" (click)="showAnswers()">Check correct answers</button>
+    <ng-container *ngIf="show" class="correct-answers-box">
+      <ul class="correct-answers-list">
+        <li *ngFor="let a of answerTable">
+          <div class="correct-answer-box">
+            <p class="correct-answer-question">{{ a.q }}:</p>
+            <p class="correct-answer">{{ a.a }}</p>
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+  </ng-container>
+</div>
