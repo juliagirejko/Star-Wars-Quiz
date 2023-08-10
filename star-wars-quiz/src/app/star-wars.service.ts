@@ -172,6 +172,7 @@ export class StarWarsService {
     console.log("size", size, "type", type)
     this.setQuestionList(type)
     this.questionsTable = []
+    this.answerTable = []
     while (this.questionsTable.length < size) {
       let questionList = this.getRandomQ()
       if(questionList){
@@ -182,6 +183,7 @@ export class StarWarsService {
       }
     }
     this.questionsForQuiz.next(this.questionsTable)
+    this.answersForQuiz.next(this.answerTable)
   }
 
 }

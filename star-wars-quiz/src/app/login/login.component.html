@@ -7,5 +7,9 @@
     <br>
     <button [disabled]="!loginForm.valid" type="submit" class="button">Log In</button>
     <button class="button" (click)="logAsGuest()">Log as guest</button>
+    <br>
+    <div class="password" *ngIf="loginForm.invalid && passwordControl?.touched && passwordControl.errors">
+      <span *ngIf="passwordControl.errors['minlength']">Password must have at least 8 characters</span>
+    </div>
   </form>
 </div>

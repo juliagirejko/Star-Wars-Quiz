@@ -14,7 +14,7 @@ export class LoginComponent {
 
   loginForm = new FormGroup({
     username: new FormControl('', Validators.required),
-    password: new FormControl('', [Validators.required, Validators.minLength(5)])
+    password: new FormControl('', [Validators.required, Validators.minLength(8)])
   });
 
   constructor(
@@ -30,6 +30,10 @@ export class LoginComponent {
       console.log("username", username, "password", password)
       if(username && password)
         this.AuthService.login(username, password).subscribe(() => this.router.navigateByUrl("/home"));
+  }
+
+  get passwordControl(): FormControl {
+    return this.loginForm.get('password') as FormControl;
   }
 
   logAsGuest(): void {
