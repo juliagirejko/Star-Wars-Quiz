@@ -11,7 +11,7 @@ import { StarWarsService } from 'src/app/star-wars.service';
 })
 export class StartPageComponent {
   questionSize = [5, 10, 15]
-  questionType= ["character", "movie", "mix"]
+  questionType = ["character", "movie", "mix"]
   selectedSize: number | undefined
   selectedType: number | undefined
   isGuest: boolean = false
